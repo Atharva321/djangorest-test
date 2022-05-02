@@ -18,7 +18,7 @@ class TodoListApiView(APIView):
         serializer = TestappSerializer(todos, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    # 2. Create
+    # 2.  Create  post request
     def post(self, request, *args, **kwargs):
         '''
         Create the Todo with given todo data
@@ -28,6 +28,7 @@ class TodoListApiView(APIView):
             'completed': request.data.get('completed'), 
             'user': request.user.id
         }
+        #serializer
         serializer = TestappSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
